@@ -10,6 +10,11 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "TimeFrame": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["MM"]},{"dataType":"enum","enums":["YY"]},{"dataType":"enum","enums":["30D"]},{"dataType":"enum","enums":["60D"]},{"dataType":"enum","enums":["90D"]},{"dataType":"enum","enums":["AT"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -22,11 +27,11 @@ export function RegisterRoutes(app: express.Router) {
     // ###########################################################################################################
         app.get('/api/dashboard',
             ...(fetchMiddlewares<RequestHandler>(DashboardController)),
-            ...(fetchMiddlewares<RequestHandler>(DashboardController.prototype.getUser)),
+            ...(fetchMiddlewares<RequestHandler>(DashboardController.prototype.getDasboardData)),
 
-            function DashboardController_getUser(request: any, response: any, next: any) {
+            function DashboardController_getDasboardData(request: any, response: any, next: any) {
             const args = {
-                    timeFrame: {"in":"query","name":"timeFrame","dataType":"string"},
+                    timeFrame: {"in":"query","name":"timeFrame","ref":"TimeFrame"},
                     from: {"in":"query","name":"from","dataType":"double"},
                     to: {"in":"query","name":"to","dataType":"double"},
             };
@@ -40,8 +45,8 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new DashboardController();
 
 
-              const promise = controller.getUser.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, undefined, next);
+              const promise = controller.getDasboardData.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
             }

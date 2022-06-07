@@ -1,6 +1,7 @@
 import { v4 as uniqueId } from 'uuid';
+import { DashboardData } from './dashboard';
 
-export const DASHBOARD_MOCK = {
+export const DASHBOARD_MOCK: DashboardData = {
     netWorth: 35000000,
     expense: 17500000,
     income: 22600000,

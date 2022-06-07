@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn tsoa spec-and-routes && git add ./src
+yarn build:tsoa && git add ./src

@@ -5,12 +5,26 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"TimeFrame": {
+				"type": "string",
+				"enum": [
+					"MM",
+					"YY",
+					"30D",
+					"60D",
+					"90D",
+					"AT"
+				],
+				"description": "Stringified time frame type"
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "@wealthcare/server",
+		"title": "Wealthcare API",
 		"version": "1.0.0",
+		"description": "Restful API for Wealthcare app",
 		"license": {
 			"name": "MIT"
 		},
@@ -20,28 +34,111 @@
 	"paths": {
 		"/dashboard": {
 			"get": {
-				"operationId": "GetUser",
+				"operationId": "GetDasboardData",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Success",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {},
+								"examples": {
+									"Default": {
+										"value": {
+											"netWorth": 35000000,
+											"expense": 17500000,
+											"income": 22600000,
+											"chartData": {
+												"netWorthGrowth": [
+													4560000,
+													12000000,
+													18239000,
+													22350000,
+													25424000,
+													4560000,
+													12000000,
+													18239000,
+													22350000,
+													25424000,
+													35000000
+												],
+												"expenses": [
+													{
+														"id": "52907745-7672-470e-a803-a2f8feb52944",
+														"name": "Food",
+														"amount": 1560000
+													},
+													{
+														"id": "52907745-7672-470e-a803-a2f8feb52944",
+														"name": "Invest",
+														"amount": 4000000
+													},
+													{
+														"id": "52907745-7672-470e-a803-a2f8feb52944",
+														"name": "Home",
+														"amount": 6000000
+													},
+													{
+														"id": "52907745-7672-470e-a803-a2f8feb52944",
+														"name": "Entertaint",
+														"amount": 4620000
+													},
+													{
+														"id": "52907745-7672-470e-a803-a2f8feb52944",
+														"name": "Health",
+														"amount": 124000
+													}
+												]
+											},
+											"budgets": [
+												{
+													"id": "52907745-7672-470e-a803-a2f8feb52944",
+													"name": "Entertaint",
+													"spent": 600000,
+													"amount": 1200000
+												},
+												{
+													"id": "52907745-7672-470e-a803-a2f8feb52944",
+													"name": "Food",
+													"spent": 600000,
+													"amount": 1200000
+												},
+												{
+													"id": "52907745-7672-470e-a803-a2f8feb52944",
+													"name": "Health",
+													"spent": 600000,
+													"amount": 1200000
+												},
+												{
+													"id": "52907745-7672-470e-a803-a2f8feb52944",
+													"name": "Invest",
+													"spent": 600000,
+													"amount": 1200000
+												}
+											]
+										}
+									}
+								}
 							}
 						}
 					}
 				},
+				"description": "Retrieves the summary data of user finance status",
+				"tags": [
+					"Dashboard Controllers"
+				],
 				"security": [],
 				"parameters": [
 					{
+						"description": "Specific time frame for calculating total expenses and incomes",
 						"in": "query",
 						"name": "timeFrame",
 						"required": false,
 						"schema": {
-							"type": "string"
+							"$ref": "#/components/schemas/TimeFrame"
 						}
 					},
 					{
+						"description": "Time range from",
 						"in": "query",
 						"name": "from",
 						"required": false,
@@ -51,6 +148,7 @@
 						}
 					},
 					{
+						"description": "Time range to",
 						"in": "query",
 						"name": "to",
 						"required": false,

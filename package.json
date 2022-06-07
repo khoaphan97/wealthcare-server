@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "nodemon src/app.ts",
+    "build:tsoa": "tsoa spec-and-routes",
     "prepare": "husky install"
   },
   "devDependencies": {
