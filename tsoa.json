@@ -9,7 +9,7 @@
         "routesDir": "./src"
     },
     "spec": {
-        "basePath": "/",
+        "basePath": "/api",
         "outputDirectory": "./src",
         "specVersion": 3
     },
