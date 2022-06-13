@@ -32,6 +32,52 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/account/{accountId}": {
+			"get": {
+				"operationId": "GetAccountById",
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Get account by id",
+				"tags": [
+					"Account Controllers"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "_ string",
+						"in": "path",
+						"name": "accountId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/account": {
+			"post": {
+				"operationId": "CreateNewAccount",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Account Controllers"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/dashboard": {
 			"get": {
 				"operationId": "GetDasboardData",
