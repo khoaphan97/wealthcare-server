@@ -8,7 +8,7 @@ dotEnv.config();
 
 const mongoUri = process.env.MONGO_URI as string;
 connect(mongoUri).then(() => {
-    console.log('MongoDB connected!')
+    console.log('MongoDB connected! Test heroku deploy')
 }).catch(err => {
     console.log(err)
 })
