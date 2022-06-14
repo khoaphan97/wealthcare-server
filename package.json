@@ -1,7 +1,7 @@
 {
   "name": "@wealthcare/server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.1",
@@ -12,9 +12,12 @@
     "tsoa": "^4.1.0"
   },
   "scripts": {
+    "start": "node build/app.js",
     "dev": "nodemon src/app.ts",
+    "build": "tsc",
     "build:tsoa": "tsoa spec-and-routes",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "tsoa spec-and-routes && tsc"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
