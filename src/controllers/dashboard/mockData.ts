@@ -1,5 +1,5 @@
 import { v4 as uniqueId } from 'uuid';
-import { DashboardData } from './dashboard';
+import { DashboardData } from './DashboardService';
 
 export const DASHBOARD_MOCK: DashboardData = {
     netWorth: 35000000,

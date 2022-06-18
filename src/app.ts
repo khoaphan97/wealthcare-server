@@ -1,8 +1,7 @@
-import express, { Request, Response } from 'express';
-import { RegisterRoutes } from './routes';
-import swaggerUi from "swagger-ui-express";
+import express, { Request, Response, NextFunction } from 'express';
 import dotEnv from 'dotenv';
 import { connect } from 'mongoose';
+import { Routes } from './routes';
 
 dotEnv.config();
 
@@ -15,13 +14,16 @@ connect(mongoUri).then(() => {
 
 
 const app = express();
-app.use('/docs', swaggerUi.serve, async (req: Request, res: Response) => {
-    return res.send(
-        swaggerUi.generateHTML(await import("./swagger.json"))
-    )
-});
+app.use(express.json());
+
+Routes.map(route => {
+    const controller = route.controller;
+    controller.generateRoutes();
+    app.use(`/api/${route.path}`, controller.router());
+})
 
 
-RegisterRoutes(app);
-app.listen(process.env.PORT || 8005);
+app.listen(process.env.PORT as string | 8005);
+
+
 
