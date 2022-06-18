@@ -7,7 +7,7 @@ dotEnv.config();
 
 const mongoUri = process.env.MONGO_URI as string;
 connect(mongoUri).then(() => {
-    console.log('MongoDB connected! Test heroku deploy')
+    console.log('MongoDB connected! Teffd')
 }).catch(err => {
     console.log(err)
 })
@@ -23,7 +23,7 @@ Routes.map(route => {
 })
 
 
-app.listen(process.env.PORT as string | 8005);
+app.listen(process.env.PORT as string || 8005);
 
 
 
