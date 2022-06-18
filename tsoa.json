@@ -11,11 +11,9 @@
     "spec": {
         "basePath": "/api",
         "outputDirectory": "./src",
-        "specVersion": 3,
         "description": "Restful API for Wealthcare app",
         "schemes": ["http"],
         "name": "Wealthcare API"
-
     },
     "swagger": {
         "outputDirectory": ".",

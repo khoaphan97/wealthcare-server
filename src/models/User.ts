@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { CommonRecord } from "./interfaces";
+import { CommonRecord } from "../models/interfaces";
 
 export interface IUser extends CommonRecord {
     name: string;
@@ -22,8 +22,11 @@ const UserSchema = new Schema<IUser>({
         type: String,
         required: true,
     },
-    created: Number,
+    created: {
+        type: Number,
+        default: Date.now(),
+    },
     updated: Number,
 });
 
-export default model('Budget', UserSchema);
+export default model('User', UserSchema);

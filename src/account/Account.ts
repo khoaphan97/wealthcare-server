@@ -21,7 +21,8 @@ const AccountSchema = new Schema<IAccount>({
     },
     initialAmount: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     balance: {
         type: Number,
@@ -31,7 +32,10 @@ const AccountSchema = new Schema<IAccount>({
         type: SchemaTypes.ObjectId,
         ref: 'User',
     },
-    created: Number,
+    created: {
+        type: Number,
+        default: Date.now(),
+    },
     updated: Number,
 });
 

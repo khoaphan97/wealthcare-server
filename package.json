@@ -4,28 +4,23 @@
   "main": "build/index.js",
   "license": "MIT",
   "dependencies": {
+    "@wealthcare/common": "^1.0.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-validator": "^6.14.1",
-    "mongoose": "^6.3.5",
-    "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.4.0",
-    "tsoa": "^4.1.0",
     "lodash": "^4.17.21",
-    "uuid": "^8.3.2",
-    "dotenv": "^16.0.1"
+    "mongoose": "^6.3.5",
+    "tsoa": "^4.1.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "node build/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc",
     "build:tsoa": "tsoa spec-and-routes",
-    "prepare": "husky install",
-    "postinstall": "tsoa spec-and-routes && tsc"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
-    "@types/swagger-jsdoc": "^6.0.1",
-    "@types/swagger-ui-express": "^4.1.3",
     "husky": "^8.0.1",
     "nodemon": "^2.0.16",
     "ts-node": "^10.8.0",
