@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node build/app.js",
     "dev": "nodemon src/app.ts",
-    "build": "tsc",
+    "build": "npx tsc",
     "build:tsoa": "tsoa spec-and-routes",
     "prepare": "husky install"
   },
