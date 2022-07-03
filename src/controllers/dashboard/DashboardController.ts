@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { Controller } from "..";
+import { authMiddleware } from "../../middlewares/auth";
 import { dashboardService } from "./DashboardService";
-
 export class DashboardController extends Controller {
     generateRoutes(): void {
         this.getDashboardData();
     }
 
     getDashboardData() {
-        this._router.get('/', async (req: Request, res: Response) => {
+        this._router.get('/', authMiddleware, async (req: Request, res: Response) => {
             try {
                 const result = await dashboardService.getDashboardData({});
                 res.json(result)

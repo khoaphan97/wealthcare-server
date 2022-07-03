@@ -5,26 +5,36 @@ import { authService } from "./AuthService";
 export class AuthController extends Controller {
 
     generateRoutes(): void {
-        this.registerUser();
+        this.createRegisterRoute();
+        this.createLoginRoute();
     }
 
-    private registerUser() {
+    private createRegisterRoute() {
         this._router.post('/register', async (req: Request, res: Response) => {
-            const { email, password, confirmPassword } = req.body;
+            const { name, email, password, confirmPassword } = req.body;
             try {
-                const result = await authService.registerUser(email, password, confirmPassword) as any;
-                if (result.error) {
-                    return res.status(422).json(result.error);
+                const result = await authService.registerUser(name, email, password, confirmPassword) as any;
+                return res.json(result);
+            } catch (error: any) {
+                if (error.error) {
+                    return res.status(422).json(error.error);
                 }
-                return res.json({
-                    status: 'success',
-                })
-            } catch (err) {
-                res.status(500).json({
-                    loll: 'annyy',
-                })
             }
         });
+    }
+
+    private createLoginRoute() {
+        this._router.post('/login', async (req: Request, res: Response) => {
+            const { email, password } = req.body;
+            try {
+                const result = await authService.login(email, password) as any;
+                return res.json(result);
+            } catch (error: any) {
+                if (error.error) {
+                    return res.status(422).json(error.error);
+                }
+            }
+        })
     }
 
     // private getUserProfile() {
